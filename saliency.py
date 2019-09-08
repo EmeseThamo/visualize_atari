@@ -9,7 +9,7 @@ import torch.nn.functional as F
 
 import numpy as np
 from scipy.ndimage.filters import gaussian_filter
-from scipy.misc import imresize # preserves single-pixel info _unlike_ img = img[::2,::2]
+from scipy.imageio import imresize # preserves single-pixel info _unlike_ img = img[::2,::2]
 
 prepro = lambda img: imresize(img[35:195].mean(2), (80,80)).astype(np.float32).reshape(1,80,80)/255.
 searchlight = lambda I, mask: I*mask + gaussian_filter(I, sigma=3)*(1-mask) # choose an area NOT to blur
