@@ -32,7 +32,7 @@ class NNPolicy(torch.nn.Module): # an actor-critic neural network
         hx, cx = self.lstm(x, (hx, cx))
         return self.critic_linear(hx), self.actor_linear(hx), (hx, cx)
 
-    def try_load(self, save_dir, checkpoint='*.pb'):
+    def try_load(self, save_dir, checkpoint='*.tar'):
         paths = glob.glob(save_dir + checkpoint) ; step = 0
         if len(paths) > 0:
             ckpts = [int(s.split('.')[-2]) for s in paths]
